@@ -14,7 +14,7 @@
             "providers": [
                 "GoomCoom\\Messages\\ServiceProvider"
             ],
-            "aliases": {g
+            "aliases": {
                 "Messages": "GoomCoom\\Messages\\Facade"
             }
         }
