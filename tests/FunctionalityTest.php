@@ -5,16 +5,15 @@ namespace GoomCoom\Messages\Tests;
 use GoomCoom\Messages\Facades\Messages;
 use GoomCoom\Messages\Test\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 
 class FunctionalityTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * @var array $bag_names
+     * @var array $default_bags
      */
-    public $bag_names = ['error', 'info', 'success', 'warning'];
+    public $default_bags = ['error', 'info', 'success', 'warning'];
 
     public function setUp() :void
     {
@@ -26,7 +25,7 @@ class FunctionalityTest extends TestCase
     {
         $bags = [];
         foreach (Messages::getBags() as $name => $bag) $bags[] = $name;
-        $this->assertEquals($this->bag_names, $bags);
+        $this->assertEquals($this->default_bags, $bags);
     }
 
     /** @test */
@@ -55,7 +54,7 @@ class FunctionalityTest extends TestCase
      */
     public function requesting_all_messages_returns_messages_from_all_bags(array $messages)
     {
-        foreach ($this->bag_names as $name) {
+        foreach ($this->default_bags as $name) {
             $this->assertArrayHasKey($name, $messages);
         }
     }
@@ -88,23 +87,5 @@ class FunctionalityTest extends TestCase
         $message = 'This should be in info';
         Messages::add('no_existent', $message);
         $this->assertTrue(in_array($message, Messages::getBag('info')->toArray()));
-    }
-
-    /** @test */
-    public function laravel_error_message_is_moved_to_the_errors_array_in_messages_and_removed()
-    {
-        $response = $this->json('post', 'api/login')
-            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
-        $response->assertJsonStructure(['messages' => ['error']]);
-        $error_message = json_decode($response->getContent())->messages->error[0];
-        $response->assertJsonMissing(['message' => $error_message]);
-    }
-
-    /** @test */
-    public function messages_are_added_to_the_response()
-    {
-        Messages::add('info', 'This should be in the response.');
-        $response = $this->json('post', 'api/login');
-        $response->assertJsonStructure(['messages' => ['info', 'error']]);
     }
 }

@@ -63,11 +63,10 @@ class AddMessagesToResponse
 
         if (!$data) $data = [];
 
-        if (Messages::hasMessages()) $data['messages'] = Messages::allMessages();
+        if (Messages::hasMessages()) $data['meta']['messages'] = Messages::allMessages();
 
         if (isset($data['message'])) {
-            $data['messages']['error'][] = $data['message'];
-            unset($data['message']);
+            $data['meta']['messages']['error'][] = $data['message'];
         }
 
         return $response->setData($data);
