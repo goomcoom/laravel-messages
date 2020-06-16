@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Utils;
+namespace GoomCoom\Messages;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
