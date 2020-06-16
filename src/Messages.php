@@ -21,7 +21,7 @@ class Messages {
     /**
      * @var array $bag_names
      */
-    protected $bag_names = ['error', 'info', 'success', 'warning'];
+    protected $bag_names;
 
     /**
      * Create the default bags
@@ -29,6 +29,8 @@ class Messages {
      */
     public function __construct()
     {
+        $this->bag_names = config('goomcoom-laravel-messages.bag_names');
+
         foreach ($this->bag_names as $name) $this->put($name, new MessageBag);
     }
 

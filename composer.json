@@ -8,9 +8,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.6.*"
-    },
     "autoload": {
         "psr-4": {
             "GoomCoom\\Messages\\": "src"
