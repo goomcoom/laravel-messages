@@ -1,0 +1,12 @@
+{
+    "name": "goomcoom/laravel-messages",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Msara",
+            "email": "simonmsaraone@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
