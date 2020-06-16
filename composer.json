@@ -20,7 +20,7 @@
                 "GoomCoom\\Messages\\MessagesServiceProvider"
             ],
             "aliases": {
-                "Messages": "GoomCoom\\Messages\\Facades\\MEssages"
+                "Messages": "GoomCoom\\Messages\\Facades\\Messages"
             }
         }
     }
