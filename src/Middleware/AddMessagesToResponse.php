@@ -14,7 +14,7 @@ class AddMessagesToResponse
     /**
      * @var Application|ResponseFactory|mixed
      */
-    protected ResponseFactory $factory;
+    protected $factory;
 
     /**
      * AddMessagesToResponse constructor.
@@ -53,7 +53,7 @@ class AddMessagesToResponse
      * @param JsonResponse $response
      * @return JsonResponse
      */
-    protected function addMessages(JsonResponse $response) :JsonResponse
+    protected function addMessages(JsonResponse $response)
     {
         $data = $response->getData(true);
 

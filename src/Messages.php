@@ -11,17 +11,17 @@ class Messages {
     /**
      * @var array $bags
      */
-    protected array $bags = [];
+    protected $bags = [];
 
     /**
      * @var string $default_bag
      */
-    protected string $default_bag = 'info';
+    protected $default_bag = 'info';
 
     /**
      * @var array $bag_names
      */
-    protected array $bag_names = ['error', 'info', 'success', 'warning'];
+    protected $bag_names = ['error', 'info', 'success', 'warning'];
 
     /**
      * Create the default bags
@@ -92,7 +92,7 @@ class Messages {
      *
      * @return array
      */
-    public function getBags() :array
+    public function getBags()
     {
         return $this->bags;
     }
@@ -102,7 +102,7 @@ class Messages {
      *
      * @return bool
      */
-    public function hasMessages() :bool
+    public function hasMessages()
     {
         return count($this->allMessages()) > 0;
     }
