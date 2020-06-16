@@ -9,10 +9,15 @@
     ],
     "minimum-stability": "dev",
     "require": {},
+    "autoload": {
+        "psr-4": {
+            "GoomCoom\\Messages\\": "src"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "GoomCoom\\Messages\\ServiceProvider"
+                "GoomCoom\\Messages\\MessagesServiceProvider"
             ],
             "aliases": {
                 "Messages": "GoomCoom\\Messages\\Facade"
