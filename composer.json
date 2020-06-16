@@ -8,5 +8,15 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GoomCoom\\Messages\\ServiceProvider"
+            ],
+            "aliases": {g
+                "Messages": "GoomCoom\\Messages\\Facade"
+            }
+        }
+    }
 }
