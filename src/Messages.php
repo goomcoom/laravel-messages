@@ -29,7 +29,7 @@ class Messages {
      */
     public function __construct()
     {
-        $this->bag_names = config('goomcoom-laravel-messages.bag_names');
+        $this->bag_names = config('goomcoom-laravel-messages.bags');
 
         foreach ($this->bag_names as $name) $this->put($name, new MessageBag);
     }
