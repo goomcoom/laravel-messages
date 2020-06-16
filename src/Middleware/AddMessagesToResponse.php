@@ -3,7 +3,7 @@
 namespace GoomCoom\Messages\Middleware;
 
 use Closure;
-use GoomCoom\Messages\Messages;
+use GoomCoom\Messages\Facades\Messages;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Foundation\Application;

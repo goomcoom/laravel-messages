@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Facades;
+namespace GoomCoom\Messages\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
