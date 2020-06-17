@@ -99,7 +99,6 @@ The middleware also checks if the response has a message property and appends th
 }
 ```
 
-## Usage
 ### Adding messages
 The first argument is the message bag that the messages are meant to be added to. We use the splat operator to
 gather messages, so you may add multiple comma-separated messages at once.
