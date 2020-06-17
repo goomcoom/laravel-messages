@@ -170,3 +170,11 @@ Messages::remove('success', '*');
 // Removes the "To be removed" & "Also to be removed" messages from the error bag'
 Messages::remove('error', 'To be removed', 'Also to be removed');
 ```
+
+### Resetting all message bags
+You may reset all message bags by calling the `reset` method.
+
+```php
+// Removes all messages
+Messages::reset();
+```

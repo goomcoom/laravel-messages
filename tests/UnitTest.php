@@ -139,4 +139,17 @@ class UnitTest extends TestCase
             Messages::getBag('error')->toArray()
         );
     }
+
+    /** @test */
+    public function the_reset_method_resets_all_message_bags()
+    {
+        Messages::add('error', 'This will be removed');
+        Messages::add('info', 'This will be removed');
+        Messages::add('success', 'This will be removed');
+        Messages::add('warning', 'This will be removed');
+
+        $this->assertTrue(Messages::hasAny());
+        Messages::reset();
+        $this->assertFalse(Messages::hasAny());
+    }
 }

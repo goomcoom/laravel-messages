@@ -6,7 +6,6 @@ namespace GoomCoom\Messages;
 
 use Illuminate\Support\MessageBag;
 use GoomCoom\Messages\Exceptions\BagDoesNotExistException;
-use Illuminate\Contracts\Support\MessageBag as MessageBagContract;
 
 class Messages {
 
@@ -15,8 +14,13 @@ class Messages {
 
     public function __construct()
     {
+        $this->reset();
+    }
+
+    public function reset()
+    {
         foreach (config('goomcoom-laravel-messages.bags') as $name) {
-            $this->createBag($name, new MessageBag);
+            $this->bags[$name] = new MessageBag;
         }
     }
 
@@ -67,20 +71,6 @@ class Messages {
             if (count($bag_messages)) $messages[$name] = $bag_messages;
         }
         return $messages;
-    }
-
-    /**
-     * Add a new MessageBag instance to the bags.
-     *
-     * @param string $key
-     * @param MessageBagContract $bag
-     * @return Messages
-     */
-    protected function createBag($key, MessageBagContract $bag)
-    {
-        $this->bags[$key] = $bag;
-
-        return $this;
     }
 
     /**

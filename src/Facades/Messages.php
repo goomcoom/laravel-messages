@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static getBag(string $name)
  * @method static add(string $bag, string ...$messages)
  * @method static remove(string $string, string ...$messages)
+ * @method static reset()
  */
 class Messages extends Facade
 {
