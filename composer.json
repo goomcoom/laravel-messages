@@ -1,6 +1,8 @@
 {
     "name": "goomcoom/laravel-messages",
+    "version": "1.0.0",
     "license": "MIT",
+    "description": "Sometimes you may wish to return responses with some extra messages informing the user of what happened. This package provides a fluent interface to add messages from anywhere within in your code base and gracefully add them to your JSON responses.",
     "authors": [
         {
             "name": "Simon Msara",
@@ -24,8 +26,10 @@
             }
         }
     },
+    "require": {
+        "php": ">=5.6"
+    },
     "require-dev": {
-        "php": "7.1",
         "phpunit/phpunit": "^9.3@dev",
         "orchestra/testbench": "^6.0@dev"
     }
