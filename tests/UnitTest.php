@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use GoomCoom\Messages\Exceptions\BagDoesNotExistException;
 
 
-class FunctionalityTest extends TestCase
+class UnitTest extends TestCase
 {
     use RefreshDatabase;
 
