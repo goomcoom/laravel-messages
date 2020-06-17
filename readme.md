@@ -1,8 +1,9 @@
 # Laravel Messages
 
-In cases where multiple resources are being operated on and there are different possible outcomes, or we might want to
-inform a user of a side effect they might be aware of, we might want to notify the user using one or more messages.
-This package provides a fluent interface to categorise messages and add them to JSON response.
+Sometimes you may wish to return responses with some extra messages informing the user of what happened. This package
+provides a fluent interface to add messages from anywhere within in your code base and gracefully add them to your JSON
+response. The messages are comparable to [session flash messages](https://laravel.com/docs/7.x/session#flash-data)
+but do not rely on the session and are especially useful for APIs.
 
 ## Installation
 Install the package using composer.
