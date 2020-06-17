@@ -3,61 +3,55 @@
 
 namespace GoomCoom\Messages;
 
-use Illuminate\Support\Arr;
+
 use Illuminate\Support\MessageBag;
+use GoomCoom\Messages\Exceptions\BagDoesNotExistException;
 use Illuminate\Contracts\Support\MessageBag as MessageBagContract;
 
 class Messages {
-    /**
-     * @var array $bags
-     */
+
     protected $bags = [];
 
-    /**
-     * @var string $default_bag
-     */
-    protected $default_bag = 'info';
 
-    /**
-     * @var array $bag_names
-     */
-    protected $bag_names;
-
-    /**
-     * Create the default bags
-     * Messages constructor.
-     */
     public function __construct()
     {
-        $this->bag_names = config('goomcoom-laravel-messages.bags');
-
-        foreach ($this->bag_names as $name) $this->put($name, new MessageBag);
-    }
-
-    /**
-     * Add a message to the relevant bag
-     *
-     * @param string $bag
-     * @param array $messages
-     * @return void
-     */
-    public function add(string $bag, ...$messages)
-    {
-        $bag = Arr::has($this->bags, $bag) ? $this->bags[$bag] : $this->bags[$this->default_bag];
-        foreach ($messages as $message) {
-            in_array($message, $bag->toArray()) ?: $bag->merge((array) $message);
+        foreach (config('goomcoom-laravel-messages.bags') as $name) {
+            $this->createBag($name, new MessageBag);
         }
     }
 
     /**
-     * Get a specified bag or the default bag
+     * Add a message to the specified bag
+     *
+     * @param string $bag
+     * @param array $messages
+     * @return void
+     * @throws BagDoesNotExistException
+     */
+    public function add(string $bag, ...$messages)
+    {
+        if (array_key_exists($bag, $this->bags)) {
+            $bag = $this->bags[$bag];
+            foreach ($messages as $message) {
+                in_array($message, $bag->toArray()) ?: $bag->merge((array) $message);
+            }
+        } else {
+            throw new BagDoesNotExistException($bag);
+        }
+    }
+
+    /**
+     * Get a specified bag
      *
      * @param string $name
      * @return MessageBag
+     * @throws BagDoesNotExistException
      */
     public function getBag($name)
     {
-        return Arr::get($this->bags, $name) ?: $this->bags[$this->default_bag];
+        if (array_key_exists($name, $this->bags)) return $this->bags[$name];
+
+        throw new BagDoesNotExistException($name);
     }
 
     /**
@@ -82,7 +76,7 @@ class Messages {
      * @param MessageBagContract $bag
      * @return Messages
      */
-    protected function put($key, MessageBagContract $bag)
+    protected function createBag($key, MessageBagContract $bag)
     {
         $this->bags[$key] = $bag;
 
@@ -100,7 +94,7 @@ class Messages {
     }
 
     /**
-     * Check if the message bag has any messages
+     * Check if the message bags have any messages
      *
      * @return bool
      */
