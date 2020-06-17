@@ -131,7 +131,8 @@ The package uses laravel's [MessageBag](https://laravel.com/api/7.x/Illuminate/S
 to categorise the messages. You may retrieve a specific bag using the `getBag` method.
 
 ```php
-Messages::getBag('warning'); // Returns Illuminate/Support/MessageBag with "warning" messages
+// Returns Illuminate/Support/MessageBag with "warning" messages
+Messages::getBag('warning');
 ```
 
 ### Getting all messages
@@ -155,5 +156,17 @@ Messages::getAll();
 You may check if any messages have been added by using the `hasAny` method.
 
 ```php
-Messages::hasAny(); // Returns boolean
+// Returns boolean
+Messages::hasAny();
+```
+
+### Removing messages
+You may remove messages from a specific bag by using the `remove` method.
+
+```php
+// Removes all messages from the success bag.
+Messages::remove('success', '*');
+
+// Removes the "To be removed" & "Also to be removed" messages from the error bag'
+Messages::remove('error', 'To be removed', 'Also to be removed');
 ```
