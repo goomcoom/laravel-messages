@@ -113,4 +113,30 @@ class UnitTest extends TestCase
         );
         Messages::add($non_existent_bag, 'An exception should be thrown.');
     }
+
+    /** @test */
+    public function the_remove_method_throws_an_exception_if_the_specified_bag_does_not_exist()
+    {
+        $this->expectException(BagDoesNotExistException::class);
+        Messages::remove('does-not-exist');
+    }
+    
+    /** @test */
+    public function the_remove_method_resets_the_bag_if_an_astrix_is_passed()
+    {
+        Messages::add('error', 'This will be removed');
+        Messages::remove('error', '*');
+        $this->assertCount(0, Messages::getBag('error')->toArray());
+    }
+
+    /** @test */
+    public function the_remove_method_removes_the_listed_messages()
+    {
+        Messages::add('error', 'This will be removed', 'This will also be removed', 'Not this one');
+        Messages::remove('error', 'This will be removed', 'This will also be removed');
+        $this->assertEquals(
+            ['Not this one'],
+            Messages::getBag('error')->toArray()
+        );
+    }
 }

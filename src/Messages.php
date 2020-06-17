@@ -28,7 +28,7 @@ class Messages {
      * @return void
      * @throws BagDoesNotExistException
      */
-    public function add(string $bag, ...$messages)
+    public function add($bag, ...$messages)
     {
         if (array_key_exists($bag, $this->bags)) {
             $bag = $this->bags[$bag];
@@ -43,15 +43,15 @@ class Messages {
     /**
      * Get a specified bag
      *
-     * @param string $name
+     * @param string $bag
      * @return MessageBag
      * @throws BagDoesNotExistException
      */
-    public function getBag($name)
+    public function getBag($bag)
     {
-        if (array_key_exists($name, $this->bags)) return $this->bags[$name];
+        if (array_key_exists($bag, $this->bags)) return $this->bags[$bag];
 
-        throw new BagDoesNotExistException($name);
+        throw new BagDoesNotExistException($bag);
     }
 
     /**
@@ -101,5 +101,31 @@ class Messages {
     public function hasAny()
     {
         return count($this->getAll()) > 0;
+    }
+
+    /**
+     * Remove messages from a specific bag.
+     *
+     * @param $bag
+     * @param string ...$messages
+     * @throws BagDoesNotExistException
+     */
+    public function remove($bag, ...$messages)
+    {
+        if (!array_key_exists($bag, $this->bags)) {
+            throw new BagDoesNotExistException($bag);
+        }
+        if (in_array('*', $messages)) {
+            $this->bags[$bag] = new MessageBag();
+        }
+        $wanted = $this->bags[$bag]->messages();
+        foreach ($messages as $message) {
+            $key = array_search($message, $wanted);
+            if ($key !== false) {
+                unset($wanted[$key]);
+            }
+        }
+        $this->bags[$bag] = new MessageBag;
+        $this->add($bag, $wanted);
     }
 }

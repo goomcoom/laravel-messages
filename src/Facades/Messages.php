@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static hasAny()
  * @method static getAll()
  * @method static getBag(string $name)
- * @method static add(string $bag, int|string|array ...$messages)
+ * @method static add(string $bag, string ...$messages)
+ * @method static remove(string $string, string ...$messages)
  */
 class Messages extends Facade
 {
