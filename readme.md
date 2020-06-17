@@ -2,8 +2,7 @@
 
 Sometimes you may wish to return responses with some extra messages informing the user of what happened. This package
 provides a fluent interface to add messages from anywhere within in your code base and gracefully add them to your JSON
-response. The messages are comparable to [session flash messages](https://laravel.com/docs/7.x/session#flash-data)
-but do not rely on the session and are especially useful for APIs.
+responses.
 
 ## Installation
 Install the package using composer.
