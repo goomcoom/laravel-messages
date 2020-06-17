@@ -63,7 +63,7 @@ class AddMessagesToResponse
 
         if (!$data) $data = [];
 
-        if (Messages::hasAny()) $data['meta']['messages'] = Messages::allMessages();
+        if (Messages::hasAny()) $data['meta']['messages'] = Messages::getAll();
 
         if (isset($data['message'])) {
             $data['meta']['messages']['error'][] = $data['message'];

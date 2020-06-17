@@ -32,7 +32,7 @@ To publish the config file you may use the following command
 ```shell script
 $ php artisan vendor:publish --tag=goomcoom-laravel-messages
 ```
-The config file holds the bags that are available for accepting messages which can customised to your preferences.
+The config file holds the bags that are available for accepting messages which are fully customizable.
 ```php
 // config/goomcoom-laravel-messages.php
 
@@ -56,7 +56,7 @@ return [
 
 
 ## Adding messages to responses
-If you would like the messages to the added to the response automatically, you may use the AddMessagesToResponse
+If you would like the messages to the added to the response automatically, you may use the `AddMessagesToResponse`
 middleware. The middleware checks if there are any messages and adds them to the response's meta content.
 For information on using middleware please refer to the official [documentation](https://laravel.com/docs/7.x/middleware).
 
@@ -131,14 +131,15 @@ The package uses laravel's [MessageBag](https://laravel.com/api/7.x/Illuminate/S
 to categorise the messages. You may retrieve a specific bag using the `getBag` method.
 
 ```php
-Messages::getBag('waring'); // Returns Illuminate/Support/MessageBag with "warning" messages
+Messages::getBag('warning'); // Returns Illuminate/Support/MessageBag with "warning" messages
 ```
 
 ### Getting all messages
-You may also retrieve all the messages as an associative array with the messages grouped by their category.
+You may also retrieve all the messages as an associative array with the messages grouped by their category by using the
+`getAll` method.
 
 ```php
-Messages::getAllMessages();
+Messages::getAll();
 
 /*
     [

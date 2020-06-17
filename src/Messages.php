@@ -59,7 +59,7 @@ class Messages {
      *
      * @return array
      */
-    public function allMessages()
+    public function getAll()
     {
         $messages = [];
         foreach ($this->bags as $name => $bag) {
@@ -100,6 +100,6 @@ class Messages {
      */
     public function hasAny()
     {
-        return count($this->allMessages()) > 0;
+        return count($this->getAll()) > 0;
     }
 }

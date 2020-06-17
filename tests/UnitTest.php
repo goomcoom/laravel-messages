@@ -43,10 +43,10 @@ class UnitTest extends TestCase
         }
 
         foreach ($messages as $bag => $message) {
-            $this->assertEquals([ $message ], Messages::allMessages()[$bag]);
+            $this->assertEquals([ $message ], Messages::getAll()[$bag]);
         }
 
-        return Messages::allMessages();
+        return Messages::getAll();
     }
 
     /**

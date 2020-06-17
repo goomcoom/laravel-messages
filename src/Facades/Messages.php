@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static getBags()
  * @method static hasAny()
- * @method static allMessages()
+ * @method static getAll()
  * @method static getBag(string $name)
  * @method static add(string $bag, int|string|array ...$messages)
  */
