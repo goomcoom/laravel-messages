@@ -98,7 +98,7 @@ class Messages {
      *
      * @return bool
      */
-    public function hasMessages()
+    public function hasAny()
     {
         return count($this->allMessages()) > 0;
     }

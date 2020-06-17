@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * The messages facade.
  *
  * @method static getBags()
- * @method static hasMessages()
+ * @method static hasAny()
  * @method static allMessages()
  * @method static getBag(string $name)
  * @method static add(string $bag, int|string|array ...$messages)

@@ -2,9 +2,7 @@
 
 In cases where multiple resources are being operated on and there are different possible outcomes, or we might want to
 inform a user of a side effect they might be aware of, we might want to notify the user using one or more messages.
-There are 2 main ways of returning feedback to a user, Notifications and manually adding messages to the response.
-Notifications work great for asynchronous jobs and events but is overkill for returning simple feedback to users. This
-package provides a fluent interface to categorise messages and add them to the response.
+This package provides a fluent interface to categorise messages and add them to JSON response.
 
 ## Installation
 Install the package using composer.
@@ -57,11 +55,10 @@ return [
 ```
 
 
-## Middleware
-If you would like the messages to the added to the response automatically, you may use the package's
-AddMessagesToResponse middleware. The middleware checks if there are any messages and adds them to the response's
-meta content. For information on using middleware please refer to the official
-[documentation](https://laravel.com/docs/7.x/middleware).
+## Adding messages to responses
+If you would like the messages to the added to the response automatically, you may use the AddMessagesToResponse
+middleware. The middleware checks if there are any messages and adds them to the response's meta content.
+For information on using middleware please refer to the official [documentation](https://laravel.com/docs/7.x/middleware).
 
 ```
 // The messages are added to the response's meta object
@@ -111,8 +108,6 @@ gather messages, so you may add multiple comma-separated messages at once.
     Messages::add('info', 'Something else happened.');
 
     /*
-        Resulting response
-
         {
             ...
             meta: {
@@ -129,5 +124,35 @@ gather messages, so you may add multiple comma-separated messages at once.
         }
     */
 ```
+It's worth noting that messages are not duplicated within a category.
 
+### Getting a bag
+The package uses laravel's [MessageBag](https://laravel.com/api/7.x/Illuminate/Support/MessageBag.html) class 
+to categorise the messages. You may retrieve a specific bag using the `getBag` method.
 
+```php
+Messages::getBag('waring'); // Returns Illuminate/Support/MessageBag with "warning" messages
+```
+
+### Getting all messages
+You may also retrieve all the messages as an associative array with the messages grouped by their category.
+
+```php
+Messages::getAllMessages();
+
+/*
+    [
+        'error' => [ ... ],
+        'info' => [ ... ],
+        'success' => [ ... ],
+        'warning' => [ ... ],
+    ]
+*/
+```
+
+### Checking if any messages have been added
+You may check if any messages have been added by using the `hasAny` method.
+
+```php
+Messages::hasAny(); // Returns boolean
+```
